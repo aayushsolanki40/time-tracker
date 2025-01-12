@@ -209,10 +209,16 @@ export default function TeamsPage() {
           </div>
           <DialogFooter>
             <Button
+              variant="outline"
+              onClick={() => setIsAddEditDialogOpen(false)}
+            >
+              Cancel
+            </Button>
+            <Button
               className="bg-primary-blue hover:bg-secondary-blue"
               type="submit"
             >
-              Save changes
+              Invite
             </Button>
           </DialogFooter>
         </DialogContent>
