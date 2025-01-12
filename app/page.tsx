@@ -1,10 +1,6 @@
 'use client'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import {
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from '@/components/ui/chart'
+import { ChartContainer } from '@/components/ui/chart'
 import { Progress } from '@/components/ui/progress'
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
 import { Activity, CheckCircle, Clock, Users } from 'lucide-react'
@@ -150,7 +146,7 @@ export default function Dashboard() {
             <CardTitle>Recent Activities</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+            <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-5">
               {recentActivities.map((activity, index) => (
                 <div
                   key={index}

@@ -150,7 +150,7 @@ export default function AddProjectPage() {
             </div>
             <Button
               type="submit"
-              className="w-full transition-all hover:bg-blue-600"
+              className="w-full transition-all bg-primary-blue hover:bg-secondary-blue"
             >
               Create Project
             </Button>

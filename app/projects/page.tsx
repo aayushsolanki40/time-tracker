@@ -20,6 +20,7 @@ const projects = [
     progress: 40,
   },
   { id: 3, name: 'Marketing Campaign', members: 3, tasks: 8, progress: 90 },
+  { id: 4, name: 'Marketing Campaign', members: 3, tasks: 8, progress: 90 },
 ]
 
 export default function ProjectsPage() {
@@ -27,7 +28,7 @@ export default function ProjectsPage() {
     <div className="space-y-8">
       <div className="flex justify-between items-center">
         <h1 className="text-3xl font-bold">Projects</h1>
-        <Button asChild>
+        <Button asChild className="bg-primary-blue hover:bg-secondary-blue">
           <Link href="/projects/add">
             <Plus className="mr-2 h-4 w-4" /> New Project
           </Link>
@@ -38,40 +39,42 @@ export default function ProjectsPage() {
         {projects.map((project) => (
           <Card
             key={project.id}
-            className="overflow-hidden transition-all hover:shadow-lg"
+            className="overflow-hidden transition-transform transform hover:shadow-lg rounded-lg border border-gray-300"
           >
-            <CardHeader className="bg-gradient-to-r from-blue-500 to-purple-500 text-white">
-              <CardTitle className="flex justify-between items-center">
+            <CardHeader className="bg-white text-gray-800 p-4 rounded-t-lg shadow-sm">
+              <CardTitle className="flex justify-between items-center text-lg font-semibold">
                 {project.name}
                 <div className="flex space-x-2">
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="text-white hover:text-blue-200"
+                    className="text-gray-600 hover:text-blue-500"
                   >
                     <Edit className="h-4 w-4" />
                   </Button>
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="text-white hover:text-blue-200"
+                    className="text-gray-600 hover:text-red-500"
                   >
                     <Trash className="h-4 w-4" />
                   </Button>
                 </div>
               </CardTitle>
             </CardHeader>
-            <CardContent className="pt-6">
+            <CardContent className="p-4">
               <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center">
                   <Users className="h-5 w-5 mr-2 text-gray-500" />
-                  <span>{project.members} members</span>
+                  <span className="text-gray-700">
+                    {project.members} members
+                  </span>
                 </div>
                 <Badge variant="secondary">{project.tasks} tasks</Badge>
               </div>
-              <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+              <div className="w-full bg-gray-200 rounded-full h-2.5">
                 <div
-                  className="bg-blue-600 h-2.5 rounded-full"
+                  className="bg-blue-500 h-2.5 rounded-full transition-all duration-300"
                   style={{ width: `${project.progress}%` }}
                 ></div>
               </div>
@@ -79,8 +82,8 @@ export default function ProjectsPage() {
                 {project.progress}% complete
               </p>
             </CardContent>
-            <CardFooter className="bg-gray-50">
-              <Button variant="ghost" className="w-full">
+            <CardFooter className="bg-gray-50 p-4 rounded-b-lg">
+              <Button variant="ghost" className="w-full text-gray-600">
                 View Details
               </Button>
             </CardFooter>

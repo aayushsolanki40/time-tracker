@@ -9,7 +9,7 @@ const navItems = [
   { name: 'Projects', href: '/projects', icon: Briefcase },
   { name: 'Teams', href: '/teams', icon: Users },
   { name: 'Docs', href: '/docs', icon: Briefcase },
-  { name: 'Clips', href: '/clips', icon: CheckSquare },
+  // { name: 'Clips', href: '/clips', icon: CheckSquare },
   { name: 'Timesheets', href: '/time-tracking', icon: Clock },
 ]
 
@@ -21,9 +21,9 @@ const spaces = [
     href: '/projects',
     icon: Briefcase,
     subItems: [
-      { name: 'Project 1', href: '/projects/1' },
-      { name: 'Project 2', href: '/projects/2' },
-      { name: 'Project Notes', href: '/projects/notes' },
+      { name: 'Project 1', href: '/tasks' },
+      { name: 'Project 2', href: '/tasks' },
+      { name: 'Project Notes', href: '/tasks' },
     ],
   },
 ]
