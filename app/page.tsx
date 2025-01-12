@@ -144,8 +144,8 @@ export default function Dashboard() {
         </Card>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-        <Card className="col-span-4">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7 auto-rows-min">
+        <Card className="col-span-4 row-span-2">
           <CardHeader>
             <CardTitle>Recent Activities</CardTitle>
           </CardHeader>
@@ -174,7 +174,7 @@ export default function Dashboard() {
             </div>
           </CardContent>
         </Card>
-        <Card className="col-span-3">
+        <Card className="col-span-3 row-span-2">
           <CardHeader>
             <CardTitle>Projects</CardTitle>
           </CardHeader>
@@ -221,8 +221,8 @@ export default function Dashboard() {
         </Card>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-        <Card className="col-span-4">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7 auto-rows-min">
+        <Card className="col-span-4 row-span-2">
           <CardHeader>
             <CardTitle>Apps & URLs</CardTitle>
           </CardHeader>
@@ -261,14 +261,14 @@ export default function Dashboard() {
             </Table>
           </CardContent>
         </Card>
-        <Card className="col-span-3">
+        <Card className="col-span-3 row-span-2">
           <CardHeader>
             <CardTitle>This Week</CardTitle>
           </CardHeader>
           <CardContent>
             <ChartContainer
               config={chartConfig}
-              className="min-h-[200px] w-full"
+              className="h-[300px] min-h-[100px] w-full"
             >
               <BarChart
                 data={chartData}
