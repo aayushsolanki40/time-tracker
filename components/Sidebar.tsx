@@ -1,4 +1,6 @@
+'use client'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation' // Update this import
 import { Home, Users, Briefcase, CheckSquare, Clock, Plus } from 'lucide-react'
 
 const navItems = [
@@ -27,6 +29,8 @@ const spaces = [
 ]
 
 export function Sidebar() {
+  const pathname = usePathname() // This will now work correctly
+
   return (
     <div className="flex flex-col w-64 bg-white border-r text-sm">
       {/* Top Section */}
@@ -42,7 +46,11 @@ export function Sidebar() {
             <li key={item.name}>
               <Link
                 href={item.href}
-                className="flex items-center p-2 text-gray-700 rounded hover:bg-gray-100"
+                className={`flex items-center p-2 rounded hover:bg-gray-100 ${
+                  pathname === item.href
+                    ? 'bg-gray-100 text-gray-800'
+                    : 'text-gray-700'
+                }`}
               >
                 <item.icon className="w-5 h-5 mr-3" />
                 {item.name}
@@ -63,7 +71,11 @@ export function Sidebar() {
               <div className="group">
                 <Link
                   href={space.href}
-                  className="flex items-center p-2 text-gray-700 rounded hover:bg-gray-100"
+                  className={`flex items-center p-2 rounded hover:bg-gray-100 ${
+                    pathname === space.href
+                      ? 'bg-gray-200 text-gray-800'
+                      : 'text-gray-700'
+                  }`}
                 >
                   <space.icon className="w-5 h-5 mr-3" />
                   {space.name}
@@ -75,7 +87,11 @@ export function Sidebar() {
                       <li key={subItem.name}>
                         <Link
                           href={subItem.href}
-                          className="block p-2 text-gray-500 rounded hover:bg-gray-100"
+                          className={`block p-2 rounded hover:bg-gray-100 ${
+                            pathname === subItem.href
+                              ? 'bg-gray-200 text-gray-800'
+                              : 'text-gray-500'
+                          }`}
                         >
                           {subItem.name}
                         </Link>

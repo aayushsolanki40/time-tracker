@@ -160,6 +160,7 @@ export default function Dashboard() {
                     src={activity.image}
                     alt={`Activity ${index + 1}`}
                     className="h-auto w-full rounded-md"
+                    draggable={false}
                   />
                   <div className="mt-2 text-center">
                     <div className="text-sm font-medium">
@@ -303,7 +304,6 @@ export default function Dashboard() {
           </CardContent>
         </Card>
       </div>
-      {/* You would typically fetch this data from an API */}
     </div>
   )
 }
