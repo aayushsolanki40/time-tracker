@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Progress } from '@/components/ui/progress'
+import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
 import { Activity, CheckCircle, Clock, Users } from 'lucide-react'
 
 export default function Dashboard() {
@@ -46,6 +47,21 @@ export default function Dashboard() {
       time: '3:00 PM',
       percentage: 62,
     },
+  ]
+
+  const appsAndUrls = [
+    {
+      app: 'Google Chrome',
+      url: 'https://www.google.com',
+      timeSpent: '2h 30m',
+    },
+    {
+      app: 'Visual Studio Code',
+      url: 'https://code.visualstudio.com',
+      timeSpent: '1h 15m',
+    },
+    { app: 'Slack', url: 'https://slack.com', timeSpent: '45m' },
+    { app: 'Trello', url: 'https://trello.com', timeSpent: '30m' },
   ]
 
   return (
@@ -131,45 +147,92 @@ export default function Dashboard() {
         </Card>
         <Card className="col-span-3">
           <CardHeader>
-            <CardTitle>Efficiency</CardTitle>
+            <CardTitle>Projects</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
               <div className="flex items-center">
-          <div className="w-full">
-            <div className="flex justify-between mb-1">
-              <span className="text-sm font-medium">Project A</span>
-              <span className="text-sm font-medium">85%</span>
-            </div>
-            <Progress value={85} className="h-2" />
-            <div className="text-xs text-muted-foreground mt-1">Time Tracked: 40 hours</div>
-          </div>
+                <div className="w-full">
+                  <div className="flex justify-between mb-1">
+                    <span className="text-sm font-medium">Project A</span>
+                    <span className="text-sm font-medium">85%</span>
+                  </div>
+                  <Progress value={85} className="h-2" />
+                  <div className="text-xs text-muted-foreground mt-1">
+                    Time Tracked: 40 hours
+                  </div>
+                </div>
               </div>
               <div className="flex items-center">
-          <div className="w-full">
-            <div className="flex justify-between mb-1">
-              <span className="text-sm font-medium">Project B</span>
-              <span className="text-sm font-medium">72%</span>
-            </div>
-            <Progress value={72} className="h-2" />
-            <div className="text-xs text-muted-foreground mt-1">Time Tracked: 35 hours</div>
-          </div>
+                <div className="w-full">
+                  <div className="flex justify-between mb-1">
+                    <span className="text-sm font-medium">Project B</span>
+                    <span className="text-sm font-medium">72%</span>
+                  </div>
+                  <Progress value={72} className="h-2" />
+                  <div className="text-xs text-muted-foreground mt-1">
+                    Time Tracked: 35 hours
+                  </div>
+                </div>
               </div>
               <div className="flex items-center">
-          <div className="w-full">
-            <div className="flex justify-between mb-1">
-              <span className="text-sm font-medium">Project C</span>
-              <span className="text-sm font-medium">63%</span>
-            </div>
-            <Progress value={63} className="h-2" />
-            <div className="text-xs text-muted-foreground mt-1">Time Tracked: 28 hours</div>
-          </div>
+                <div className="w-full">
+                  <div className="flex justify-between mb-1">
+                    <span className="text-sm font-medium">Project C</span>
+                    <span className="text-sm font-medium">63%</span>
+                  </div>
+                  <Progress value={63} className="h-2" />
+                  <div className="text-xs text-muted-foreground mt-1">
+                    Time Tracked: 28 hours
+                  </div>
+                </div>
               </div>
             </div>
           </CardContent>
         </Card>
       </div>
 
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
+        <Card className="col-span-4">
+          <CardHeader>
+            <CardTitle>Apps & URLs</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Table>
+              <thead>
+                <TableRow>
+                  <TableCell>App</TableCell>
+                  <TableCell>Time Spent</TableCell>
+                </TableRow>
+              </thead>
+              <TableBody>
+                {appsAndUrls.map((item, index) => (
+                  <TableRow key={index}>
+                    <TableCell>
+                      <a
+                        href={item.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {item.app}
+                      </a>
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex flex-col">
+                        <span>{item.timeSpent}</span>
+                        <Progress
+                          value={parseInt(item.timeSpent)}
+                          className="h-2 mt-1"
+                        />
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </CardContent>
+        </Card>
+      </div>
       {/* You would typically fetch this data from an API */}
     </div>
   )
