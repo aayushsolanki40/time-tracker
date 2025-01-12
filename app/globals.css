@@ -47,6 +47,9 @@ body {
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+    --primary-blue: #2B216A;
+    --secondary-blue: #4D4582;
+    --placeholder-text: #C7CED9;
   }
   .dark {
     --background: 0 0% 3.9%;

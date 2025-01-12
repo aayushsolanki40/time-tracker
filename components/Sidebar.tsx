@@ -1,27 +1,27 @@
-import Link from "next/link";
-import { Home, Users, Briefcase, CheckSquare, Clock, Plus } from "lucide-react";
+import Link from 'next/link';
+import { Home, Users, Briefcase, CheckSquare, Clock, Plus } from 'lucide-react';
 
 const navItems = [
-  { name: "Dashboard", href: "/", icon: Home },
-  { name: "Inbox", href: "/inbox", icon: CheckSquare },
-  { name: "Projects", href: "/projects", icon: Briefcase },
-  { name: "Teams", href: "/teams", icon: Users },
-  { name: "Docs", href: "/docs", icon: Briefcase },
-  { name: "Clips", href: "/clips", icon: CheckSquare },
-  { name: "Timesheets", href: "/time-tracking", icon: Clock },
+  { name: 'Dashboard', href: '/', icon: Home },
+  { name: 'Inbox', href: '/inbox', icon: CheckSquare },
+  { name: 'Projects', href: '/projects', icon: Briefcase },
+  { name: 'Teams', href: '/teams', icon: Users },
+  { name: 'Docs', href: '/docs', icon: Briefcase },
+  { name: 'Clips', href: '/clips', icon: CheckSquare },
+  { name: 'Timesheets', href: '/time-tracking', icon: Clock },
 ];
 
 const spaces = [
-  { name: "Everything", href: "/everything", icon: Home },
-  { name: "Team Space", href: "/team-space", icon: Users },
+  { name: 'Everything', href: '/everything', icon: Home },
+  { name: 'Team Space', href: '/team-space', icon: Users },
   {
-    name: "Projects",
-    href: "/projects",
+    name: 'Projects',
+    href: '/projects',
     icon: Briefcase,
     subItems: [
-      { name: "Project 1", href: "/projects/1" },
-      { name: "Project 2", href: "/projects/2" },
-      { name: "Project Notes", href: "/projects/notes" },
+      { name: 'Project 1', href: '/projects/1' },
+      { name: 'Project 2', href: '/projects/2' },
+      { name: 'Project Notes', href: '/projects/notes' },
     ],
   },
 ];
@@ -31,7 +31,7 @@ export function Sidebar() {
     <div className="flex flex-col w-64 bg-white border-r text-sm">
       {/* Top Section */}
       <div className="flex items-center justify-between h-16 px-4 border-b">
-        <span className="text-lg font-semibold text-gray-800">Sara Khan</span>
+        <span className="text-lg font-semibold text-gray-800">Aayush S.</span>
       </div>
 
       {/* Main Navigation */}
