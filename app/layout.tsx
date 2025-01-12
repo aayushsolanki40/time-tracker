@@ -1,21 +1,21 @@
-import './globals.css';
-import { Inter } from 'next/font/google';
-import { Sidebar } from '@/components/Sidebar';
-import AppIcon from '@/components/icons/app-icon';
-import { Input } from '@/components/ui/input';
-import { SearchIcon } from 'lucide-react';
+import './globals.css'
+import { Inter } from 'next/font/google'
+import { Sidebar } from '@/components/Sidebar'
+import AppIcon from '@/components/icons/app-icon'
+import { Input } from '@/components/ui/input'
+import { SearchIcon } from 'lucide-react'
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'TaskTime Tracker',
   description: 'Task management and time tracking application',
-};
+}
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <html lang="en">
@@ -43,5 +43,5 @@ export default function RootLayout({
         </div>
       </body>
     </html>
-  );
+  )
 }

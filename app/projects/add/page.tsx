@@ -1,54 +1,67 @@
 'use client'
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Textarea } from "@/components/ui/textarea"
-import { Badge } from "@/components/ui/badge"
-import { useState } from "react"
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+import { Textarea } from '@/components/ui/textarea'
+import { Badge } from '@/components/ui/badge'
+import { useState } from 'react'
 import { X, Plus } from 'lucide-react'
 
 const teamMembers = [
-  { id: 1, name: "John Doe" },
-  { id: 2, name: "Jane Smith" },
-  { id: 3, name: "Bob Johnson" },
-  { id: 4, name: "Alice Williams" },
+  { id: 1, name: 'John Doe' },
+  { id: 2, name: 'Jane Smith' },
+  { id: 3, name: 'Bob Johnson' },
+  { id: 4, name: 'Alice Williams' },
 ]
 
 const accessRights = [
-  { value: "viewer", label: "Viewer" },
-  { value: "editor", label: "Editor" },
-  { value: "admin", label: "Admin" },
+  { value: 'viewer', label: 'Viewer' },
+  { value: 'editor', label: 'Editor' },
+  { value: 'admin', label: 'Admin' },
 ]
 
 type AssignedMember = {
-  id: string;
-  role: string;
+  id: string
+  role: string
 }
 
 export default function AddProjectPage() {
   const [assignedMembers, setAssignedMembers] = useState<AssignedMember[]>([])
-  const [selectedMember, setSelectedMember] = useState<string>("")
-  const [selectedRole, setSelectedRole] = useState<string>("")
+  const [selectedMember, setSelectedMember] = useState<string>('')
+  const [selectedRole, setSelectedRole] = useState<string>('')
 
   const addMember = () => {
-    if (selectedMember && selectedRole && !assignedMembers.some(m => m.id === selectedMember)) {
-      setAssignedMembers([...assignedMembers, { id: selectedMember, role: selectedRole }])
-      setSelectedMember("")
-      setSelectedRole("")
+    if (
+      selectedMember &&
+      selectedRole &&
+      !assignedMembers.some((m) => m.id === selectedMember)
+    ) {
+      setAssignedMembers([
+        ...assignedMembers,
+        { id: selectedMember, role: selectedRole },
+      ])
+      setSelectedMember('')
+      setSelectedRole('')
     }
   }
 
   const removeMember = (memberId: string) => {
-    setAssignedMembers(assignedMembers.filter(m => m.id !== memberId))
+    setAssignedMembers(assignedMembers.filter((m) => m.id !== memberId))
   }
 
   return (
     <div className="space-y-8">
       <h1 className="text-3xl font-bold">Create New Project</h1>
-      
+
       <Card className="max-w-2xl">
         <CardHeader>
           <CardTitle>Project Details</CardTitle>
@@ -57,16 +70,27 @@ export default function AddProjectPage() {
           <form className="space-y-6">
             <div className="space-y-2">
               <Label htmlFor="name">Project Name</Label>
-              <Input id="name" placeholder="Enter project name" className="transition-all focus:ring-2 focus:ring-blue-500" />
+              <Input
+                id="name"
+                placeholder="Enter project name"
+                className="transition-all focus:ring-2 focus:ring-blue-500"
+              />
             </div>
             <div className="space-y-2">
               <Label htmlFor="description">Description</Label>
-              <Textarea id="description" placeholder="Enter project description" className="transition-all focus:ring-2 focus:ring-blue-500" />
+              <Textarea
+                id="description"
+                placeholder="Enter project description"
+                className="transition-all focus:ring-2 focus:ring-blue-500"
+              />
             </div>
             <div className="space-y-2">
               <Label>Assign Team Members</Label>
               <div className="flex space-x-2">
-                <Select value={selectedMember} onValueChange={setSelectedMember}>
+                <Select
+                  value={selectedMember}
+                  onValueChange={setSelectedMember}
+                >
                   <SelectTrigger className="w-[200px]">
                     <SelectValue placeholder="Select member" />
                   </SelectTrigger>
@@ -90,16 +114,26 @@ export default function AddProjectPage() {
                     ))}
                   </SelectContent>
                 </Select>
-                <Button type="button" onClick={addMember} disabled={!selectedMember || !selectedRole}>
+                <Button
+                  type="button"
+                  onClick={addMember}
+                  disabled={!selectedMember || !selectedRole}
+                >
                   <Plus className="h-4 w-4 mr-2" />
                   Add
                 </Button>
               </div>
               <div className="flex flex-wrap gap-2 mt-2">
                 {assignedMembers.map((assigned) => {
-                  const member = teamMembers.find(m => m.id.toString() === assigned.id)
+                  const member = teamMembers.find(
+                    (m) => m.id.toString() === assigned.id,
+                  )
                   return (
-                    <Badge key={assigned.id} variant="secondary" className="px-3 py-1">
+                    <Badge
+                      key={assigned.id}
+                      variant="secondary"
+                      className="px-3 py-1"
+                    >
                       {member?.name} ({assigned.role})
                       <Button
                         variant="ghost"
@@ -114,11 +148,15 @@ export default function AddProjectPage() {
                 })}
               </div>
             </div>
-            <Button type="submit" className="w-full transition-all hover:bg-blue-600">Create Project</Button>
+            <Button
+              type="submit"
+              className="w-full transition-all hover:bg-blue-600"
+            >
+              Create Project
+            </Button>
           </form>
         </CardContent>
       </Card>
     </div>
   )
 }
-

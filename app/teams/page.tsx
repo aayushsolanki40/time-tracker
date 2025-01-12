@@ -1,20 +1,41 @@
 'use client'
 
 import { useState } from 'react'
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table'
 import { Edit, Plus, Trash, User } from 'lucide-react'
-import Link from "next/link"
+import Link from 'next/link'
 
 const initialTeamMembers = [
-  { id: 1, name: "John Doe", role: "Admin", email: "john@example.com" },
-  { id: 2, name: "Jane Smith", role: "Employee", email: "jane@example.com" },
-  { id: 3, name: "Bob Johnson", role: "Employee", email: "bob@example.com" },
+  { id: 1, name: 'John Doe', role: 'Admin', email: 'john@example.com' },
+  { id: 2, name: 'Jane Smith', role: 'Employee', email: 'jane@example.com' },
+  { id: 3, name: 'Bob Johnson', role: 'Employee', email: 'bob@example.com' },
 ]
 
 export default function TeamsPage() {
@@ -29,7 +50,9 @@ export default function TeamsPage() {
 
   const confirmDelete = () => {
     if (memberToDelete) {
-      setTeamMembers(teamMembers.filter(member => member.id !== memberToDelete))
+      setTeamMembers(
+        teamMembers.filter((member) => member.id !== memberToDelete),
+      )
       setIsDeleteDialogOpen(false)
       setMemberToDelete(null)
     }
@@ -45,7 +68,7 @@ export default function TeamsPage() {
           </Link>
         </Button>
       </div>
-      
+
       <Card>
         <CardHeader>
           <CardTitle>Team Members List</CardTitle>
@@ -73,7 +96,11 @@ export default function TeamsPage() {
                           <Edit className="h-4 w-4" />
                         </Link>
                       </Button>
-                      <Button variant="ghost" size="icon" onClick={() => handleDeleteMember(member.id)}>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={() => handleDeleteMember(member.id)}
+                      >
                         <Trash className="h-4 w-4" />
                       </Button>
                     </div>
@@ -90,16 +117,23 @@ export default function TeamsPage() {
           <DialogHeader>
             <DialogTitle>Confirm Deletion</DialogTitle>
             <DialogDescription>
-              Are you sure you want to delete this team member? This action cannot be undone.
+              Are you sure you want to delete this team member? This action
+              cannot be undone.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setIsDeleteDialogOpen(false)}>Cancel</Button>
-            <Button variant="destructive" onClick={confirmDelete}>Delete</Button>
+            <Button
+              variant="outline"
+              onClick={() => setIsDeleteDialogOpen(false)}
+            >
+              Cancel
+            </Button>
+            <Button variant="destructive" onClick={confirmDelete}>
+              Delete
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
     </div>
   )
 }
-

@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import { Home, Users, Briefcase, CheckSquare, Clock, Plus } from 'lucide-react';
+import Link from 'next/link'
+import { Home, Users, Briefcase, CheckSquare, Clock, Plus } from 'lucide-react'
 
 const navItems = [
   { name: 'Dashboard', href: '/', icon: Home },
@@ -9,7 +9,7 @@ const navItems = [
   { name: 'Docs', href: '/docs', icon: Briefcase },
   { name: 'Clips', href: '/clips', icon: CheckSquare },
   { name: 'Timesheets', href: '/time-tracking', icon: Clock },
-];
+]
 
 const spaces = [
   { name: 'Everything', href: '/everything', icon: Home },
@@ -24,7 +24,7 @@ const spaces = [
       { name: 'Project Notes', href: '/projects/notes' },
     ],
   },
-];
+]
 
 export function Sidebar() {
   return (
@@ -102,5 +102,5 @@ export function Sidebar() {
         <button className="text-gray-600 hover:underline">Help</button>
       </div>
     </div>
-  );
+  )
 }

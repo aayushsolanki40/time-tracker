@@ -1,14 +1,20 @@
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 
 export default function AddTeamMemberPage() {
   return (
     <div className="space-y-8">
       <h1 className="text-3xl font-bold">Add Team Member</h1>
-      
+
       <Card className="max-w-2xl">
         <CardHeader>
           <CardTitle>New Team Member Details</CardTitle>
@@ -46,4 +52,3 @@ export default function AddTeamMemberPage() {
     </div>
   )
 }
-

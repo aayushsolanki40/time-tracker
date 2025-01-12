@@ -1,6 +1,6 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
-import { Activity, CheckCircle, Clock, Users } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Progress } from '@/components/ui/progress'
+import { Activity, CheckCircle, Clock, Users } from 'lucide-react'
 
 export default function Dashboard() {
   return (
@@ -105,5 +105,5 @@ export default function Dashboard() {
       {/* Recent Activities and Time Sheet would go here */}
       {/* You would typically fetch this data from an API */}
     </div>
-  );
+  )
 }

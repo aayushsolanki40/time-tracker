@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 function searchIcon() {
   return (
@@ -16,7 +16,7 @@ function searchIcon() {
         d="M21 21l-4.35-4.35m1.35-5.65a7 7 0 11-14 0 7 7 0 0114 0z"
       ></path>
     </svg>
-  );
+  )
 }
 
-export default searchIcon;
+export default searchIcon

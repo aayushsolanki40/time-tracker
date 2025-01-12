@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 function AppIcon() {
   return (
@@ -24,7 +24,7 @@ function AppIcon() {
         fill="white"
       />
     </svg>
-  );
+  )
 }
 
-export default AppIcon;
+export default AppIcon

@@ -1,38 +1,79 @@
 'use client'
 
 import { useState } from 'react'
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Edit, Plus, Trash } from 'lucide-react'
-import Link from "next/link"
+import Link from 'next/link'
 
 const initialTasks = [
-  { id: 1, title: "Design homepage", status: "To Do", project: "Website Redesign" },
-  { id: 2, title: "Implement login functionality", status: "In Progress", project: "Website Redesign" },
-  { id: 3, title: "Write API documentation", status: "Ready for QA", project: "Mobile App" },
-  { id: 4, title: "Fix payment bug", status: "Completed", project: "E-commerce Platform" },
+  {
+    id: 1,
+    title: 'Design homepage',
+    status: 'To Do',
+    project: 'Website Redesign',
+  },
+  {
+    id: 2,
+    title: 'Implement login functionality',
+    status: 'In Progress',
+    project: 'Website Redesign',
+  },
+  {
+    id: 3,
+    title: 'Write API documentation',
+    status: 'Ready for QA',
+    project: 'Mobile App',
+  },
+  {
+    id: 4,
+    title: 'Fix payment bug',
+    status: 'Completed',
+    project: 'E-commerce Platform',
+  },
 ]
 
-const projects = ["Website Redesign", "Mobile App", "E-commerce Platform"]
-const statuses = ["To Do", "In Progress", "Ready for QA", "Completed"]
+const projects = ['Website Redesign', 'Mobile App', 'E-commerce Platform']
+const statuses = ['To Do', 'In Progress', 'Ready for QA', 'Completed']
 
 export default function TasksPage() {
   const [tasks, setTasks] = useState(initialTasks)
   const [selectedProject, setSelectedProject] = useState<string | undefined>()
-  const [viewStyle, setViewStyle] = useState("kanban")
+  const [viewStyle, setViewStyle] = useState('kanban')
 
   const filteredTasks = selectedProject
-    ? tasks.filter(task => task.project === selectedProject)
+    ? tasks.filter((task) => task.project === selectedProject)
     : tasks
 
   const handleDragStart = (e: React.DragEvent, taskId: number) => {
-    e.dataTransfer.setData("taskId", taskId.toString())
+    e.dataTransfer.setData('taskId', taskId.toString())
   }
 
   const handleDragOver = (e: React.DragEvent) => {
@@ -41,10 +82,10 @@ export default function TasksPage() {
 
   const handleDrop = (e: React.DragEvent, status: string) => {
     e.preventDefault()
-    const taskId = parseInt(e.dataTransfer.getData("taskId"))
-    setTasks(tasks.map(task => 
-      task.id === taskId ? { ...task, status } : task
-    ))
+    const taskId = parseInt(e.dataTransfer.getData('taskId'))
+    setTasks(
+      tasks.map((task) => (task.id === taskId ? { ...task, status } : task)),
+    )
   }
 
   return (
@@ -58,8 +99,10 @@ export default function TasksPage() {
             </SelectTrigger>
             <SelectContent>
               <SelectItem value={undefined}>All Projects</SelectItem>
-              {projects.map(project => (
-                <SelectItem key={project} value={project}>{project}</SelectItem>
+              {projects.map((project) => (
+                <SelectItem key={project} value={project}>
+                  {project}
+                </SelectItem>
               ))}
             </SelectContent>
           </Select>
@@ -78,7 +121,7 @@ export default function TasksPage() {
         </TabsList>
         <TabsContent value="kanban">
           <div className="grid grid-cols-4 gap-4">
-            {statuses.map(status => (
+            {statuses.map((status) => (
               <Card key={status}>
                 <CardHeader>
                   <CardTitle>{status}</CardTitle>
@@ -88,8 +131,8 @@ export default function TasksPage() {
                   onDrop={(e) => handleDrop(e, status)}
                 >
                   {filteredTasks
-                    .filter(task => task.status === status)
-                    .map(task => (
+                    .filter((task) => task.status === status)
+                    .map((task) => (
                       <div
                         key={task.id}
                         draggable
@@ -119,7 +162,9 @@ export default function TasksPage() {
                 <TableBody>
                   {filteredTasks.map((task) => (
                     <TableRow key={task.id}>
-                      <TableCell className="font-medium">{task.title}</TableCell>
+                      <TableCell className="font-medium">
+                        {task.title}
+                      </TableCell>
                       <TableCell>{task.status}</TableCell>
                       <TableCell>{task.project}</TableCell>
                       <TableCell>
@@ -145,4 +190,3 @@ export default function TasksPage() {
     </div>
   )
 }
-

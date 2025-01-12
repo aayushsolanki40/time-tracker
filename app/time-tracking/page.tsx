@@ -1,31 +1,63 @@
 'use client'
 
 import { useState } from 'react'
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table'
 import { CalendarIcon } from 'lucide-react'
 import { format } from 'date-fns'
-import { Calendar } from "@/components/ui/calendar"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { Calendar } from '@/components/ui/calendar'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover'
 
 const initialTimeEntries = [
-  { id: 1, app: "VS Code", url: "github.com", duration: "2h 30m", date: "2023-05-15" },
-  { id: 2, app: "Chrome", url: "stackoverflow.com", duration: "1h 15m", date: "2023-05-15" },
-  { id: 3, app: "Slack", url: "mycompany.slack.com", duration: "45m", date: "2023-05-16" },
-  { id: 4, app: "Figma", url: "figma.com", duration: "3h", date: "2023-05-16" },
+  {
+    id: 1,
+    app: 'VS Code',
+    url: 'github.com',
+    duration: '2h 30m',
+    date: '2023-05-15',
+  },
+  {
+    id: 2,
+    app: 'Chrome',
+    url: 'stackoverflow.com',
+    duration: '1h 15m',
+    date: '2023-05-15',
+  },
+  {
+    id: 3,
+    app: 'Slack',
+    url: 'mycompany.slack.com',
+    duration: '45m',
+    date: '2023-05-16',
+  },
+  { id: 4, app: 'Figma', url: 'figma.com', duration: '3h', date: '2023-05-16' },
 ]
 
 export default function TimeTrackingPage() {
   const [timeEntries, setTimeEntries] = useState(initialTimeEntries)
-  const [dateRange, setDateRange] = useState<{ from: Date; to: Date | undefined }>({
+  const [dateRange, setDateRange] = useState<{
+    from: Date
+    to: Date | undefined
+  }>({
     from: new Date(),
     to: undefined,
   })
 
-  const filteredEntries = timeEntries.filter(entry => {
+  const filteredEntries = timeEntries.filter((entry) => {
     const entryDate = new Date(entry.date)
     return (
       entryDate >= dateRange.from &&
@@ -49,11 +81,11 @@ export default function TimeTrackingPage() {
               {dateRange.from ? (
                 dateRange.to ? (
                   <>
-                    {format(dateRange.from, "LLL dd, y")} -{" "}
-                    {format(dateRange.to, "LLL dd, y")}
+                    {format(dateRange.from, 'LLL dd, y')} -{' '}
+                    {format(dateRange.to, 'LLL dd, y')}
                   </>
                 ) : (
-                  format(dateRange.from, "LLL dd, y")
+                  format(dateRange.from, 'LLL dd, y')
                 )
               ) : (
                 <span>Pick a date</span>
@@ -66,7 +98,9 @@ export default function TimeTrackingPage() {
               mode="range"
               defaultMonth={dateRange.from}
               selected={dateRange}
-              onSelect={(range) => setDateRange(range as { from: Date; to: Date | undefined })}
+              onSelect={(range) =>
+                setDateRange(range as { from: Date; to: Date | undefined })
+              }
               numberOfMonths={2}
             />
           </PopoverContent>
@@ -103,4 +137,3 @@ export default function TimeTrackingPage() {
     </div>
   )
 }
-
