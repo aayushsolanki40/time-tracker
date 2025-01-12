@@ -1,7 +1,15 @@
+'use client'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from '@/components/ui/chart'
 import { Progress } from '@/components/ui/progress'
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
 import { Activity, CheckCircle, Clock, Users } from 'lucide-react'
+import { Bar, BarChart, XAxis, YAxis } from 'recharts'
+import { type ChartConfig } from '@/components/ui/chart'
 
 export default function Dashboard() {
   const recentActivities = [
@@ -63,6 +71,27 @@ export default function Dashboard() {
     { app: 'Slack', url: 'https://slack.com', timeSpent: '45m' },
     { app: 'Trello', url: 'https://trello.com', timeSpent: '30m' },
   ]
+
+  const chartData = [
+    { day: 'Mon', tracked: 186 },
+    { day: 'Tue', tracked: 305 },
+    { day: 'Wed', tracked: 237 },
+    { day: 'Thu', tracked: 73 },
+    { day: 'Fri', tracked: 209 },
+    { day: 'Sat', tracked: 214 },
+    { day: 'Sun', tracked: 214 },
+  ]
+
+  const chartConfig = {
+    day: {
+      label: 'Days',
+      color: '#2563eb',
+    },
+    tracked: {
+      label: 'Time Tracked',
+      color: '#60a5fa',
+    },
+  } satisfies ChartConfig
 
   return (
     <div className="space-y-8">
@@ -230,6 +259,47 @@ export default function Dashboard() {
                 ))}
               </TableBody>
             </Table>
+          </CardContent>
+        </Card>
+        <Card className="col-span-3">
+          <CardHeader>
+            <CardTitle>This Week</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ChartContainer
+              config={chartConfig}
+              className="min-h-[200px] w-full"
+            >
+              <BarChart
+                data={chartData}
+                margin={{ top: 10, right: 0, left: 0, bottom: 10 }}
+              >
+                <XAxis
+                  dataKey="day"
+                  label={{
+                    value: 'Days',
+                    position: 'insideBottom',
+                    offset: -5,
+                  }}
+                  axisLine={false}
+                />
+                <YAxis
+                  label={{
+                    value: 'Time Tracked (hours)',
+                    angle: -90,
+                    position: 'insideLeft',
+                  }}
+                  axisLine={false}
+                />
+                <Bar
+                  dataKey="tracked"
+                  fill="var(--color-desktop)"
+                  strokeWidth={2}
+                  barSize={10}
+                  radius={4}
+                />
+              </BarChart>
+            </ChartContainer>
           </CardContent>
         </Card>
       </div>
