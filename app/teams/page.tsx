@@ -10,17 +10,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from '@/components/ui/dialog'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
 import {
   Table,
   TableBody,
@@ -32,11 +22,59 @@ import {
 import { Edit, Plus, Trash, User } from 'lucide-react'
 import Link from 'next/link'
 
-const initialTeamMembers = [
-  { id: 1, name: 'John Doe', role: 'Admin', email: 'john@example.com' },
-  { id: 2, name: 'Jane Smith', role: 'Employee', email: 'jane@example.com' },
-  { id: 3, name: 'Bob Johnson', role: 'Employee', email: 'bob@example.com' },
+type Status = 'approved' | 'pending' | 'rejected'
+
+const initialTeamMembers: {
+  id: number
+  name: string
+  role: string
+  email: string
+  status: Status
+}[] = [
+  {
+    id: 1,
+    name: 'John Doe',
+    role: 'Admin',
+    email: 'john@example.com',
+    status: 'approved',
+  },
+  {
+    id: 2,
+    name: 'Jane Smith',
+    role: 'Employee',
+    email: 'jane@example.com',
+    status: 'pending',
+  },
+  {
+    id: 3,
+    name: 'Bob Johnson',
+    role: 'Employee',
+    email: 'bob@example.com',
+    status: 'rejected',
+  },
 ]
+
+const statusColors = {
+  approved: 'text-green-600',
+  pending: 'text-yellow-600',
+  rejected: 'text-red-600',
+}
+
+const getStatusTag = (status: keyof typeof statusColors) => {
+  const bgColor = {
+    approved: 'bg-green-100',
+    pending: 'bg-yellow-100',
+    rejected: 'bg-red-100',
+  }
+
+  return (
+    <span
+      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${statusColors[status]} ${bgColor[status]}`}
+    >
+      {status.charAt(0).toUpperCase() + status.slice(1)}
+    </span>
+  )
+}
 
 export default function TeamsPage() {
   const [teamMembers, setTeamMembers] = useState(initialTeamMembers)
@@ -80,6 +118,7 @@ export default function TeamsPage() {
                 <TableHead>Name</TableHead>
                 <TableHead>Role</TableHead>
                 <TableHead>Email</TableHead>
+                <TableHead>Status</TableHead>
                 <TableHead>Actions</TableHead>
               </TableRow>
             </TableHeader>
@@ -89,6 +128,7 @@ export default function TeamsPage() {
                   <TableCell className="font-medium">{member.name}</TableCell>
                   <TableCell>{member.role}</TableCell>
                   <TableCell>{member.email}</TableCell>
+                  <TableCell>{getStatusTag(member.status)}</TableCell>
                   <TableCell>
                     <div className="flex space-x-2">
                       <Button variant="ghost" size="icon" asChild>
