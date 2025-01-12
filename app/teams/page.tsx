@@ -10,6 +10,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
+  DialogTrigger,
 } from '@/components/ui/dialog'
 import {
   Table,
@@ -21,6 +22,15 @@ import {
 } from '@/components/ui/table'
 import { Edit, Plus, Trash, User } from 'lucide-react'
 import Link from 'next/link'
+import { Label } from '@/components/ui/label'
+import { Input } from '@/components/ui/input'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 
 type Status = 'approved' | 'pending' | 'rejected'
 
@@ -79,6 +89,7 @@ const getStatusTag = (status: keyof typeof statusColors) => {
 export default function TeamsPage() {
   const [teamMembers, setTeamMembers] = useState(initialTeamMembers)
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false)
+  const [isAddEditDialogOpen, setIsAddEditDialogOpen] = useState(false)
   const [memberToDelete, setMemberToDelete] = useState<number | null>(null)
 
   const handleDeleteMember = (id: number) => {
@@ -100,10 +111,14 @@ export default function TeamsPage() {
     <div className="space-y-8">
       <div className="flex justify-between items-center">
         <h1 className="text-3xl font-bold">Team Members</h1>
-        <Button asChild>
-          <Link href="/teams/add">
-            <Plus className="mr-2 h-4 w-4" /> Add Team Member
-          </Link>
+        <Button
+          asChild
+          className="bg-primary-blue hover:bg-secondary-blue"
+          onClick={() => setIsAddEditDialogOpen(true)}
+        >
+          <div>
+            <Plus className="mr-2 h-4 w-4" /> Invite New Member
+          </div>
         </Button>
       </div>
 
@@ -151,6 +166,57 @@ export default function TeamsPage() {
           </Table>
         </CardContent>
       </Card>
+
+      <Dialog open={isAddEditDialogOpen} onOpenChange={setIsAddEditDialogOpen}>
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle>New Team Member Details</DialogTitle>
+            <DialogDescription>
+              Add member's all required details. Click invite when you're done.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid gap-4 py-4">
+            <form className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="name">Name</Label>
+                <Input id="name" placeholder="Enter name" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="email">Email</Label>
+                <Input id="email" type="email" placeholder="Enter email" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="mobile">Mobile</Label>
+                <Input
+                  id="mobile"
+                  type="tel"
+                  placeholder="Enter mobile number"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="role">Role</Label>
+                <Select>
+                  <SelectTrigger id="role">
+                    <SelectValue placeholder="Select a role" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="admin">Admin</SelectItem>
+                    <SelectItem value="employee">Employee</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </form>
+          </div>
+          <DialogFooter>
+            <Button
+              className="bg-primary-blue hover:bg-secondary-blue"
+              type="submit"
+            >
+              Save changes
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       <Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
         <DialogContent>
