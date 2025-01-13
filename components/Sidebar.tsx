@@ -1,11 +1,11 @@
 'use client'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation' // Update this import
-import { Home, Users, Briefcase, CheckSquare, Clock, Plus } from 'lucide-react'
+import { Home, Users, Briefcase, Clock, Plus, Bell } from 'lucide-react'
 
 const navItems = [
   { name: 'Dashboard', href: '/', icon: Home },
-  { name: 'Inbox', href: '/inbox', icon: CheckSquare },
+  { name: 'Notifications', href: '/notifications', icon: Bell },
   { name: 'Projects', href: '/projects', icon: Briefcase },
   { name: 'Teams', href: '/teams', icon: Users },
   { name: 'Docs', href: '/docs', icon: Briefcase },
