@@ -4,6 +4,7 @@ import { Sidebar } from '@/components/Sidebar'
 import AppIcon from '@/components/icons/app-icon'
 import { Input } from '@/components/ui/input'
 import { SearchIcon } from 'lucide-react'
+import NotificationBar from '@/components/notification/notification-bar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -38,18 +39,7 @@ export default function RootLayout({
         </div>
 
         {/* Notification bar */}
-        <div className="h-10 bg-notification-blue flex items-center justify-between px-4 text-white text-sm">
-          <span>ClickUp needs your permission to send notifications</span>
-          <div className="flex gap-2">
-            <button className="text-white bg-white/20 px-3 py-1 rounded-md hover:bg-white/30">
-              Enable
-            </button>
-            <button className="text-white bg-white/20 px-3 py-1 rounded-md hover:bg-white/30">
-              Remind me
-            </button>
-            <button className="text-white hover:text-gray-300">✕</button>
-          </div>
-        </div>
+        <NotificationBar />
 
         {/* Main layout section */}
         <div className="flex flex-1 bg-gray-100 overflow-hidden">
