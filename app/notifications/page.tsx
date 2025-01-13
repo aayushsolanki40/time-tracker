@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { CheckCircle, User } from 'lucide-react'
+import Loading from './loading'
 
 interface Message {
   id: string
@@ -68,6 +69,7 @@ export default function InboxPage() {
 
   useEffect(() => {
     const fetchMessages = async () => {
+      await new Promise((resolve) => setTimeout(resolve, 1000))
       try {
         const dummyMessages: Message[] = [
           {
@@ -129,11 +131,7 @@ export default function InboxPage() {
   }, [])
 
   if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500" />
-      </div>
-    )
+    return <Loading />
   }
 
   const groupedMessages = messages.reduce(
@@ -151,7 +149,7 @@ export default function InboxPage() {
     <div className="space-y-8">
       <h1 className="text-3xl font-bold">Notifications</h1>
 
-      <div className="min-h-screen bg-white border rounded-lg shadow-sm">
+      <div className="min-h-full bg-white border rounded-lg shadow-sm">
         {Object.entries(groupedMessages).map(([group, messages], index) => (
           <div key={group} className="border-b border-gray-100 last:border-b-0">
             <div className="px-6 py-2.5 bg-gray-50 border-b border-gray-100">
