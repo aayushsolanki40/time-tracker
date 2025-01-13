@@ -64,6 +64,9 @@ const config: Config = {
           border: 'hsl(var(--sidebar-border))',
           ring: 'hsl(var(--sidebar-ring))',
         },
+        notification: {
+          blue: 'hsl(var(--notification-bg-blue))',
+        },
       },
       borderRadius: {
         lg: 'var(--radius)',

@@ -50,6 +50,7 @@ body {
     --primary-blue: #2b216a;
     --secondary-blue: #4d4582;
     --placeholder-text: #c7ced9;
+    --notification-bg-blue: 249 76.7% 59.6%;
   }
   .dark {
     --background: 0 0% 3.9%;
