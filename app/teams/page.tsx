@@ -109,8 +109,8 @@ export default function TeamsPage() {
 
   return (
     <div className="space-y-8">
-      <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold">Team Members</h1>
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-bold">Team Members</h1>
         <Button
           asChild
           className="bg-primary-blue hover:bg-secondary-blue"
@@ -123,9 +123,6 @@ export default function TeamsPage() {
       </div>
 
       <Card>
-        <CardHeader>
-          <CardTitle>Team Members List</CardTitle>
-        </CardHeader>
         <CardContent>
           <Table>
             <TableHeader>

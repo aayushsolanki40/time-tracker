@@ -3,8 +3,6 @@
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
 import {
   Table,
   TableBody,
@@ -73,7 +71,7 @@ export default function TimeTrackingPage() {
   return (
     <div className="space-y-8">
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold">Time Tracking</h1>
+        <h1 className="text-2xl font-bold">Time Tracking</h1>
         <Popover>
           <PopoverTrigger asChild>
             <Button variant="outline">

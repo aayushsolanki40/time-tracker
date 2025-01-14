@@ -1,7 +1,7 @@
 export default function Loading() {
   return (
     <div className="space-y-8">
-      <h1 className="text-3xl font-bold">Notifications</h1>
+      <h1 className="text-2xl font-bold">Notifications</h1>
       <div className="min-h-full bg-white border rounded-lg shadow-sm">
         {/* Yesterday Section */}
         <div className="border-b border-gray-100">
