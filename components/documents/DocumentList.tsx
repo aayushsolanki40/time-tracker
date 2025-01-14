@@ -9,8 +9,24 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { Trash2, Download, Info } from 'lucide-react'
+import {
+  Trash2,
+  Download,
+  Info,
+  MoreVertical,
+  Share,
+  Edit,
+  Archive,
+} from 'lucide-react'
 import { DocumentDetailsModal } from './DocumentDetailsModal'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '../ui/dropdown-menu'
+import { AvatarGroup } from '../ui/avatar'
 
 interface DocumentListProps {
   documents: Document[]
@@ -37,6 +53,7 @@ export function DocumentList({ documents, onDelete }: DocumentListProps) {
               <TableHead>File Name</TableHead>
               <TableHead>Project</TableHead>
               <TableHead>Upload Date</TableHead>
+              <TableHead>Access Members</TableHead>
               <TableHead className="text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
@@ -46,31 +63,56 @@ export function DocumentList({ documents, onDelete }: DocumentListProps) {
                 <TableCell>{doc.fileName}</TableCell>
                 <TableCell>{doc.projectName}</TableCell>
                 <TableCell>{doc.uploadedAt.toLocaleDateString()}</TableCell>
+                <TableCell>
+                  <AvatarGroup
+                    images={[
+                      'https://yt3.ggpht.com/ytc/APkrFKaERKeBTY6Z-ktDAHmsZ38tbAi2M84InFei9RtiPmQ=s800-c-k-c0x00ffffff-no-rj',
+                      'https://yt3.ggpht.com/ytc/APkrFKaERKeBTY6Z-ktDAHmsZ38tbAi2M84InFei9RtiPmQ=s800-c-k-c0x00ffffff-no-rj',
+                      'https://yt3.ggpht.com/ytc/APkrFKaERKeBTY6Z-ktDAHmsZ38tbAi2M84InFei9RtiPmQ=s800-c-k-c0x00ffffff-no-rj',
+                      'https://yt3.ggpht.com/ytc/APkrFKaERKeBTY6Z-ktDAHmsZ38tbAi2M84InFei9RtiPmQ=s800-c-k-c0x00ffffff-no-rj',
+                    ]}
+                  />
+                </TableCell>
                 <TableCell className="text-right">
-                  <div className="flex justify-end space-x-2">
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={() => handleInfoClick(doc)}
-                    >
-                      <Info className="h-4 w-4" />
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={() => window.open(doc.fileUrl, '_blank')}
-                    >
-                      <Download className="h-4 w-4" />
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="text-red-600 hover:text-red-800 hover:bg-red-100"
-                      onClick={() => onDelete(doc.id)}
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </Button>
-                  </div>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="ghost" size="icon">
+                        <MoreVertical className="h-4 w-4" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="w-48">
+                      <DropdownMenuItem onClick={() => handleInfoClick(doc)}>
+                        <Info className="mr-2 h-4 w-4" />
+                        View Details
+                      </DropdownMenuItem>
+                      <DropdownMenuItem
+                        onClick={() => window.open(doc.fileUrl, '_blank')}
+                      >
+                        <Download className="mr-2 h-4 w-4" />
+                        Download
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        <Share className="mr-2 h-4 w-4" />
+                        Share
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        <Edit className="mr-2 h-4 w-4" />
+                        Edit
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        <Archive className="mr-2 h-4 w-4" />
+                        Archive
+                      </DropdownMenuItem>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem
+                        className="text-red-600 focus:bg-red-50 focus:text-red-600"
+                        onClick={() => onDelete(doc.id)}
+                      >
+                        <Trash2 className="mr-2 h-4 w-4" />
+                        Delete
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                 </TableCell>
               </TableRow>
             ))}

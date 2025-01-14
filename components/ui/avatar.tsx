@@ -47,4 +47,48 @@ const AvatarFallback = React.forwardRef<
 ))
 AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName
 
-export { Avatar, AvatarImage, AvatarFallback }
+const AvatarGroup = React.forwardRef<
+  React.ElementRef<typeof AvatarPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root> & {
+    images: string[]
+    maxVisible?: number
+  }
+>(({ className, images, maxVisible = 3, ...props }, ref) => {
+  const visibleImages = images.slice(0, maxVisible)
+  const remainingCount = images.length - maxVisible
+
+  return (
+    <div className="flex -space-x-3 *:ring *:ring-background">
+      {visibleImages.map((image, index) => (
+        <AvatarPrimitive.Root
+          key={index}
+          ref={ref}
+          className={cn(
+            'relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full',
+            className,
+          )}
+          {...props}
+        >
+          <AvatarPrimitive.Image src={image} />
+        </AvatarPrimitive.Root>
+      ))}
+      {remainingCount > 0 && (
+        <AvatarPrimitive.Root
+          ref={ref}
+          className={cn(
+            'relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full bg-muted',
+            className,
+          )}
+          {...props}
+        >
+          <AvatarPrimitive.Fallback className="flex justify-center items-center w-full h-full text-sm font-bold">
+            +{remainingCount}
+          </AvatarPrimitive.Fallback>
+        </AvatarPrimitive.Root>
+      )}
+    </div>
+  )
+})
+AvatarGroup.displayName = 'AvatarGroup'
+
+export { Avatar, AvatarImage, AvatarFallback, AvatarGroup }
