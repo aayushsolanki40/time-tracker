@@ -6,6 +6,13 @@ import { Document } from '@/types/document'
 import { Label } from '@/components/ui/label'
 import { DocumentList } from '../../components/documents/DocumentList'
 import { AddDocumentDialog } from '../../components/documents/AddDocumentModal'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 
 // Demo projects data
 const demoProjects = [
@@ -88,25 +95,20 @@ export default function DocumentsPage() {
     <div className="container xl:max-w-[2560px] mx-auto space-y-8">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Documents</h1>
-        <Button onClick={() => setIsDialogOpen(true)}>Add Document</Button>
-      </div>
-
-      <div className="mb-6 flex items-center gap-4">
-        <div className="w-64">
-          <Label htmlFor="project-filter">Filter by Project</Label>
-          <select
-            id="project-filter"
-            className="w-full p-2 border rounded-md"
-            value={selectedProject}
-            onChange={(e) => setSelectedProject(e.target.value)}
-          >
-            <option value="all">All Projects</option>
-            {demoProjects.map((project) => (
-              <option key={project.id} value={project.id}>
-                {project.name}
-              </option>
-            ))}
-          </select>
+        <div className="flex items-center gap-4">
+          <Select value={selectedProject} onValueChange={setSelectedProject}>
+            <SelectTrigger className="w-[200px]">
+              <SelectValue>All Projects</SelectValue>
+            </SelectTrigger>
+            <SelectContent>
+              {demoProjects.map((project) => (
+                <SelectItem key={project.id} value={project.id.toString()}>
+                  {project.name}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          <Button onClick={() => setIsDialogOpen(true)}>Add Document</Button>
         </div>
       </div>
 
