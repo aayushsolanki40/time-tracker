@@ -85,7 +85,7 @@ export default function DocumentsPage() {
       : documents.filter((doc) => doc.projectId === selectedProject)
 
   return (
-    <div className="space-y-8">
+    <div className="container xl:max-w-[2560px] mx-auto space-y-8">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Documents</h1>
         <Button onClick={() => setIsDialogOpen(true)}>Add Document</Button>

@@ -69,7 +69,7 @@ export default function TimeTrackingPage() {
   }, 0)
 
   return (
-    <div className="space-y-8">
+    <div className="container xl:max-w-[2560px] mx-auto space-y-8">
       <div className="flex justify-between items-center">
         <h1 className="text-2xl font-bold">Time Tracking</h1>
         <Popover>

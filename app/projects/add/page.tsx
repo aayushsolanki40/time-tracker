@@ -59,7 +59,7 @@ export default function AddProjectPage() {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="container xl:max-w-[2560px] mx-auto space-y-8">
       <h1 className="text-3xl font-bold">Create New Project</h1>
 
       <Card className="max-w-2xl">
@@ -82,6 +82,7 @@ export default function AddProjectPage() {
                 id="description"
                 placeholder="Enter project description"
                 className="transition-all focus:ring-2 focus:ring-blue-500"
+                onResize={(height) => console.log(height)}
               />
             </div>
             <div className="space-y-2">

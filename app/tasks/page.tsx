@@ -89,7 +89,7 @@ export default function TasksPage() {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="container xl:max-w-[2560px] mx-auto space-y-8">
       <div className="flex justify-between items-center">
         <h1 className="text-2xl font-bold">Tasks</h1>
         <div className="flex space-x-4">
@@ -98,7 +98,7 @@ export default function TasksPage() {
               <SelectValue placeholder="Select project" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">All Projects</SelectItem>
+              <SelectItem value={undefined}>All Projects</SelectItem>
               {projects.map((project) => (
                 <SelectItem key={project} value={project}>
                   {project}

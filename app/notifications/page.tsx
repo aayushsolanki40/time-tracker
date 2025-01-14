@@ -146,7 +146,7 @@ export default function InboxPage() {
   )
 
   return (
-    <div className="space-y-8">
+    <div className="container xl:max-w-[2560px] mx-auto space-y-8">
       <h1 className="text-2xl font-bold">Notifications</h1>
 
       <div className="min-h-full bg-white border rounded-lg shadow-sm">

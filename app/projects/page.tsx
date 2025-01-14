@@ -25,7 +25,7 @@ const projects = [
 
 export default function ProjectsPage() {
   return (
-    <div className="space-y-8">
+    <div className="container xl:max-w-[2560px] mx-auto space-y-8">
       <div className="flex justify-between items-center">
         <h1 className="text-2xl font-bold">Projects</h1>
         <Button asChild className="bg-primary-blue hover:bg-secondary-blue">
