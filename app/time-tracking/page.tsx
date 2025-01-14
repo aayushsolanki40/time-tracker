@@ -28,23 +28,23 @@ const initialTimeEntries = [
     app: 'VS Code',
     url: 'github.com',
     duration: '2h 30m',
-    date: '2023-05-15',
+    date: '2025-02-13',
   },
   {
     id: 2,
     app: 'Chrome',
     url: 'stackoverflow.com',
     duration: '1h 15m',
-    date: '2023-05-15',
+    date: '2025-02-13',
   },
   {
     id: 3,
     app: 'Slack',
     url: 'mycompany.slack.com',
     duration: '45m',
-    date: '2023-05-16',
+    date: '2025-02-13',
   },
-  { id: 4, app: 'Figma', url: 'figma.com', duration: '3h', date: '2023-05-16' },
+  { id: 4, app: 'Figma', url: 'figma.com', duration: '3h', date: '2025-02-13' },
 ]
 
 export default function TimeTrackingPage() {

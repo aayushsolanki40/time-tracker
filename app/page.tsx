@@ -11,42 +11,42 @@ export default function Dashboard() {
   const recentActivities = [
     {
       image:
-        'https://pixabay.com/get/gd48ecbac2360e4c7fc2733f7199e9579f23a668a923423a6474f0e20e214c1e42dc57e830c319cf05f5db0bd4f44fdff02102f313fd5f96585b8b81a4d40abe1f8c95aef9a209595dadf78abffb4fdfe_640.jpg',
+        'https://images.pexels.com/photos/792199/pexels-photo-792199.jpeg?cs=srgb&dl=pexels-natri-792199.jpg&fm=jpg&w=5973&h=3987',
       activity: 'Code Preview',
       time: '10:00 AM',
       percentage: 41,
     },
     {
       image:
-        'https://pixabay.com/get/gd48ecbac2360e4c7fc2733f7199e9579f23a668a923423a6474f0e20e214c1e42dc57e830c319cf05f5db0bd4f44fdff02102f313fd5f96585b8b81a4d40abe1f8c95aef9a209595dadf78abffb4fdfe_640.jpg',
+        'https://images.pexels.com/photos/792199/pexels-photo-792199.jpeg?cs=srgb&dl=pexels-natri-792199.jpg&fm=jpg&w=5973&h=3987',
       activity: 'Code Review',
       time: '11:00 AM',
       percentage: 33,
     },
     {
       image:
-        'https://pixabay.com/get/gd48ecbac2360e4c7fc2733f7199e9579f23a668a923423a6474f0e20e214c1e42dc57e830c319cf05f5db0bd4f44fdff02102f313fd5f96585b8b81a4d40abe1f8c95aef9a209595dadf78abffb4fdfe_640.jpg',
+        'https://images.pexels.com/photos/792199/pexels-photo-792199.jpeg?cs=srgb&dl=pexels-natri-792199.jpg&fm=jpg&w=5973&h=3987',
       activity: 'Bug Fixing',
       time: '12:00 PM',
       percentage: 26,
     },
     {
       image:
-        'https://pixabay.com/get/gd48ecbac2360e4c7fc2733f7199e9579f23a668a923423a6474f0e20e214c1e42dc57e830c319cf05f5db0bd4f44fdff02102f313fd5f96585b8b81a4d40abe1f8c95aef9a209595dadf78abffb4fdfe_640.jpg',
+        'https://images.pexels.com/photos/792199/pexels-photo-792199.jpeg?cs=srgb&dl=pexels-natri-792199.jpg&fm=jpg&w=5973&h=3987',
       activity: 'Feature Development',
       time: '1:00 PM',
       percentage: 51,
     },
     {
       image:
-        'https://pixabay.com/get/gd48ecbac2360e4c7fc2733f7199e9579f23a668a923423a6474f0e20e214c1e42dc57e830c319cf05f5db0bd4f44fdff02102f313fd5f96585b8b81a4d40abe1f8c95aef9a209595dadf78abffb4fdfe_640.jpg',
+        'https://images.pexels.com/photos/792199/pexels-photo-792199.jpeg?cs=srgb&dl=pexels-natri-792199.jpg&fm=jpg&w=5973&h=3987',
       activity: 'Testing',
       time: '2:00 PM',
       percentage: 28,
     },
     {
       image:
-        'https://pixabay.com/get/gd48ecbac2360e4c7fc2733f7199e9579f23a668a923423a6474f0e20e214c1e42dc57e830c319cf05f5db0bd4f44fdff02102f313fd5f96585b8b81a4d40abe1f8c95aef9a209595dadf78abffb4fdfe_640.jpg',
+        'https://images.pexels.com/photos/792199/pexels-photo-792199.jpeg?cs=srgb&dl=pexels-natri-792199.jpg&fm=jpg&w=5973&h=3987',
       activity: 'Deployment',
       time: '3:00 PM',
       percentage: 62,
