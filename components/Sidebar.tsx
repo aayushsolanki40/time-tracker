@@ -2,6 +2,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation' // Update this import
 import { Home, Users, Briefcase, Clock, Plus, Bell } from 'lucide-react'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
 const navItems = [
   { name: 'Dashboard', href: '/', icon: Home },
@@ -34,7 +35,11 @@ export function Sidebar() {
   return (
     <div className="flex flex-col w-64 bg-white border-r text-sm">
       {/* Top Section */}
-      <div className="flex items-center justify-between h-16 px-4 border-b">
+      <div className="flex items-center gap-3 h-16 px-4 border-b">
+        <Avatar className="h-8 w-8">
+          <AvatarImage src="/api/placeholder/32/32" alt="Aayush S." />
+          <AvatarFallback>AS</AvatarFallback>
+        </Avatar>
         <span className="text-lg font-semibold text-gray-800">Aayush S.</span>
       </div>
 
