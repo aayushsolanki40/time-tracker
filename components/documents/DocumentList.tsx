@@ -65,6 +65,7 @@ export function DocumentList({ documents, onDelete }: DocumentListProps) {
                 <TableCell>{doc.uploadedAt.toLocaleDateString()}</TableCell>
                 <TableCell>
                   <AvatarGroup
+                    className="h-7 w-7"
                     images={[
                       'https://yt3.ggpht.com/ytc/APkrFKaERKeBTY6Z-ktDAHmsZ38tbAi2M84InFei9RtiPmQ=s800-c-k-c0x00ffffff-no-rj',
                       'https://yt3.ggpht.com/ytc/APkrFKaERKeBTY6Z-ktDAHmsZ38tbAi2M84InFei9RtiPmQ=s800-c-k-c0x00ffffff-no-rj',

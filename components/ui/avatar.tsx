@@ -58,7 +58,7 @@ const AvatarGroup = React.forwardRef<
   const remainingCount = images.length - maxVisible
 
   return (
-    <div className="flex -space-x-3 *:ring *:ring-background">
+    <div className="flex -space-x-2 *:ring *:ring-background">
       {visibleImages.map((image, index) => (
         <AvatarPrimitive.Root
           key={index}
@@ -81,7 +81,7 @@ const AvatarGroup = React.forwardRef<
           )}
           {...props}
         >
-          <AvatarPrimitive.Fallback className="flex justify-center items-center w-full h-full text-sm font-bold">
+          <AvatarPrimitive.Fallback className="flex justify-center items-center w-full h-full text-[10px] font-bold">
             +{remainingCount}
           </AvatarPrimitive.Fallback>
         </AvatarPrimitive.Root>
