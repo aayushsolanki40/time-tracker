@@ -4,13 +4,16 @@ import { usePathname } from 'next/navigation'
 import {
   Home,
   Users,
-  Briefcase,
   Clock,
   Bell,
   AppWindow,
   Plus,
   Minus,
   File,
+  HelpCircle,
+  Folder,
+  FolderClock,
+  CalendarIcon,
 } from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { useState } from 'react'
@@ -41,6 +44,9 @@ interface Sprint {
   id: string
   name: string
   status: 'active' | 'completed' | 'planned'
+  startDate: string
+  endDate: string
+  tasks: number
 }
 
 interface Project {
@@ -54,7 +60,7 @@ interface Project {
 const navItems = [
   { name: 'Dashboard', href: '/', icon: Home },
   { name: 'Notifications', href: '/notifications', icon: Bell },
-  { name: 'Projects', href: '/projects', icon: Briefcase },
+  { name: 'Projects', href: '/projects', icon: FolderClock },
   { name: 'Teams', href: '/teams', icon: Users },
   { name: 'Docs', href: '/docs', icon: File },
   { name: 'Timesheets', href: '/time-tracking', icon: Clock },
@@ -65,20 +71,55 @@ const demoProjects: Project[] = [
   {
     id: 'proj1',
     name: 'Project Alpha',
-    href: '/projects/alpha',
+    href: '/tasks/alpha',
     sprints: [
-      { id: 'sp1', name: 'Sprint 1', status: 'completed' },
-      { id: 'sp2', name: 'Sprint 2', status: 'active' },
-      { id: 'sp3', name: 'Sprint 3', status: 'planned' },
+      {
+        id: 'sp1',
+        name: 'Sprint 1',
+        status: 'completed',
+        startDate: '2022-01-25',
+        endDate: '2022-09-05',
+        tasks: 35,
+      },
+      {
+        id: 'sp2',
+        name: 'Sprint 2',
+        status: 'active',
+        startDate: '2022-01-25',
+        endDate: '2022-09-05',
+        tasks: 35,
+      },
+      {
+        id: 'sp3',
+        name: 'Sprint 3',
+        status: 'planned',
+        startDate: '2022-01-25',
+        endDate: '2022-05-05',
+        tasks: 35,
+      },
     ],
   },
   {
     id: 'proj2',
     name: 'Project Beta',
-    href: '/projects/beta',
+    href: '/tasks/beta',
     sprints: [
-      { id: 'sp4', name: 'Sprint 1', status: 'completed' },
-      { id: 'sp5', name: 'Sprint 2', status: 'active' },
+      {
+        id: 'sp4',
+        name: 'Sprint 1',
+        status: 'completed',
+        startDate: '2022-01-25',
+        endDate: '2022-02-05',
+        tasks: 35,
+      },
+      {
+        id: 'sp5',
+        name: 'Sprint 2',
+        status: 'active',
+        startDate: '2022-01-25',
+        endDate: '2022-02-05',
+        tasks: 35,
+      },
     ],
   },
 ]
@@ -174,7 +215,7 @@ export function Sidebar() {
             onClick={toggleProjectsSection}
           >
             <div className="flex items-center">
-              <Briefcase
+              <Folder
                 className={cn(
                   'w-5 h-5 mr-3',
                   projectsExpanded
@@ -197,7 +238,7 @@ export function Sidebar() {
           </div>
 
           {projectsExpanded && (
-            <div className="ml-4 space-y-1">
+            <div className="ml-1 space-y-1">
               {demoProjects.map((project) => (
                 <div key={project.id} className="space-y-1">
                   <div className="flex items-center gap-2">
@@ -223,9 +264,8 @@ export function Sidebar() {
                   {expandedProjects[project.id] && (
                     <div
                       className={cn(
-                        'ml-6 space-y-1 pl-4',
-                        'border-l-2',
-                        colors.secondary.border,
+                        'ml-6 space-y-1 pl-1 ',
+                        'border-l-2 border-b   border-gray-400 border-dashed last:border-b-0',
                       )}
                     >
                       {project.sprints.map((sprint) => (
@@ -233,15 +273,54 @@ export function Sidebar() {
                           key={sprint.id}
                           href={`${project.href}/sprints/${sprint.id}`}
                           className={cn(
-                            'flex items-center p-2 text-sm rounded-md',
+                            'flex items-center py-1 px-2 text-sm rounded-md',
                             'transition-colors duration-200',
                             pathname === `${project.href}/sprints/${sprint.id}`
                               ? colors.primary.bg
                               : colors.secondary.hover,
                           )}
                         >
-                          <div className={cn('w-2 h-2 rounded-full mr-2')} />
-                          <span className="text-gray-500">{sprint.name}</span>
+                          <div
+                            className={`
+                              w-full
+                              last:border-b-0
+                              hover:bg-sidebar-accent/5
+                              transition-colors duration-200
+                              border-gray-500
+                            `}
+                          >
+                            {/* Sprint Title */}
+                            <div className="text-sidebar-foreground font-medium text-sm flex justify-between w-full">
+                              <span className="text-[12px]">{sprint.name}</span>
+                              <span className="flex items-center text-[10px] text-gray-500 space-x-1">
+                                <File className="w-3 h-3 mr-1" />
+                                {sprint.tasks}
+                                <span>tasks</span>
+                              </span>
+                            </div>
+
+                            {/* Sprint Details */}
+                            <div className="flex items-center space-x-3 text-[10px] text-sidebar-foreground/70 mt-1">
+                              <span className="flex items-center">
+                                <CalendarIcon className="w-3 h-3 mr-1" />
+                                {new Date(sprint.startDate).toLocaleDateString(
+                                  'en-US',
+                                  {
+                                    month: 'short',
+                                    day: 'numeric',
+                                  },
+                                )}{' '}
+                                -{' '}
+                                {new Date(sprint.endDate).toLocaleDateString(
+                                  'en-US',
+                                  {
+                                    month: 'short',
+                                    day: 'numeric',
+                                  },
+                                )}
+                              </span>
+                            </div>
+                          </div>
                         </Link>
                       ))}
                     </div>
@@ -261,8 +340,11 @@ export function Sidebar() {
       </nav>
       {/* Bottom Help Section */}
       <div className="px-4 py-4 border-t">
-        <button className="text-gray-600 hover:underline">Help</button>
-      </div>{' '}
+        <button className="flex text-gray-600 hover:underline">
+          <HelpCircle className="w-5 h-5 mr-2" />
+          Help
+        </button>
+      </div>
     </div>
   )
 }

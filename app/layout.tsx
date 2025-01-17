@@ -32,7 +32,7 @@ export default function RootLayout({
                 className="w-full px-4 py-1.5 rounded-md h-8 bg-secondary-blue outline-none border-none text-white placeholder:text-primary-placeholder focus-visible:ring-0 focus-visible:ring-offset-0 pl-10"
               />
               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <SearchIcon color="white" />
+                <SearchIcon height={15} color="#fff9" />
               </div>
             </div>
           </div>
