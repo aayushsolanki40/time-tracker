@@ -40,6 +40,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { Alert, AlertDescription } from '@/components/ui/alert'
+import { cn } from '@/lib/utils'
 
 const initialTimeEntries = [
   {
@@ -96,6 +97,23 @@ const projects = [
   'Communication',
   'Design',
 ]
+
+const getActivityColor = (activity: number) => {
+  if (activity >= 90) return 'bg-green-500'
+  if (activity >= 70) return 'bg-blue-500'
+  if (activity >= 50) return 'bg-yellow-500'
+  return 'bg-red-500'
+}
+
+const getProjectColor = (project: string) => {
+  const colors: { [key: string]: string } = {
+    'Frontend Development': 'text-blue-600 bg-blue-100',
+    Research: 'text-purple-600 bg-purple-100',
+    Communication: 'text-green-600 bg-green-100',
+    Design: 'text-orange-600 bg-orange-100',
+  }
+  return colors[project] || 'text-gray-600 bg-gray-100'
+}
 
 export default function TimeTrackingPage() {
   const [timeEntries, setTimeEntries] = useState(initialTimeEntries)
@@ -163,15 +181,29 @@ export default function TimeTrackingPage() {
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        <Card>
+        <Card className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950 dark:to-blue-900">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Hours</CardTitle>
-            <Clock className="h-4 w-4 text-muted-foreground" />
+            <Clock className="h-4 w-4 text-blue-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{totalHours.toFixed(1)}h</div>
-            <Progress value={progress} className="mt-4" />
-            <p className="text-xs text-muted-foreground mt-2">
+            <div className="text-2xl font-bold text-blue-700 dark:text-blue-300">
+              {totalHours.toFixed(1)}h
+            </div>
+            <Progress
+              value={progress}
+              className="mt-4"
+              indicatorClassName={cn(
+                progress >= 100
+                  ? 'bg-green-500'
+                  : progress >= 75
+                    ? 'bg-blue-500'
+                    : progress >= 50
+                      ? 'bg-yellow-500'
+                      : 'bg-red-500',
+              )}
+            />
+            <p className="text-xs text-blue-600 dark:text-blue-400 mt-2">
               {progress.toFixed(1)}% of {targetHours}h target
             </p>
           </CardContent>
@@ -285,25 +317,66 @@ export default function TimeTrackingPage() {
               </TableHeader>
               <TableBody>
                 {filteredEntries.map((entry) => (
-                  <TableRow key={entry.id}>
-                    <TableCell className="font-medium">{entry.app}</TableCell>
-                    <TableCell>{entry.project}</TableCell>
-                    <TableCell>{entry.url}</TableCell>
-                    <TableCell>{entry.duration}</TableCell>
+                  <TableRow
+                    key={entry.id}
+                    className="hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                  >
+                    <TableCell className="font-medium">
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+                        {entry.app}
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <span
+                        className={cn(
+                          'px-2 py-1 rounded-full text-xs font-medium',
+                          getProjectColor(entry.project),
+                        )}
+                      >
+                        {entry.project}
+                      </span>
+                    </TableCell>
+                    <TableCell className="text-muted-foreground">
+                      {entry.url}
+                    </TableCell>
+                    <TableCell className="font-semibold">
+                      {entry.duration}
+                    </TableCell>
                     <TableCell>
                       <div className="flex items-center space-x-2">
-                        <Progress value={entry.activity} className="w-[60px]" />
-                        <span className="text-sm text-muted-foreground">
+                        <Progress
+                          value={entry.activity}
+                          className="w-[60px]"
+                          indicatorClassName={getActivityColor(entry.activity)}
+                        />
+                        <span
+                          className={cn(
+                            'text-sm',
+                            entry.activity >= 90
+                              ? 'text-green-600'
+                              : entry.activity >= 70
+                                ? 'text-blue-600'
+                                : entry.activity >= 50
+                                  ? 'text-yellow-600'
+                                  : 'text-red-600',
+                          )}
+                        >
                           {entry.activity}%
                         </span>
                       </div>
                     </TableCell>
-                    <TableCell>{entry.idle}</TableCell>
-                    <TableCell>{entry.manual}</TableCell>
+                    <TableCell className="text-muted-foreground">
+                      {entry.idle}
+                    </TableCell>
+                    <TableCell className="text-muted-foreground">
+                      {entry.manual}
+                    </TableCell>
                     <TableCell className="text-right">
                       <Button
                         variant="ghost"
                         size="sm"
+                        className="hover:bg-red-100 hover:text-red-600 transition-colors"
                         onClick={() => {
                           setTimeEntries(
                             timeEntries.filter((t) => t.id !== entry.id),
