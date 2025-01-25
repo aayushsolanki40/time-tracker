@@ -118,7 +118,7 @@ function TaskArea({ className }: TaskAreaProps) {
           className,
         )}
       >
-        <div className="flex h-full min-w-max space-x-4 p-4">
+        <div className="flex h-full min-w-max space-x-4">
           {Object.entries(taskTypes).map(
             ([containerId, { title, color, tasks }]) => (
               <SortableContext
