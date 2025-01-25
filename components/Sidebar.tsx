@@ -63,7 +63,7 @@ const navItems = [
   { name: 'Projects', href: '/projects', icon: FolderClock },
   { name: 'Teams', href: '/teams', icon: Users },
   { name: 'Docs', href: '/docs', icon: File },
-  { name: 'Timesheets', href: '/time-tracking', icon: Clock },
+  { name: 'Timesheet', href: '/timesheet', icon: Clock },
   { name: 'Integrations', href: '/integrations', icon: AppWindow },
 ]
 
@@ -130,6 +130,17 @@ export function Sidebar() {
     Record<string, boolean>
   >({})
   const [projectsExpanded, setProjectsExpanded] = useState(true)
+  const [sprintDisplayCounts, setSprintDisplayCounts] = useState<
+    Record<string, number>
+  >(
+    demoProjects.reduce(
+      (acc, project) => {
+        acc[project.id] = 2 // Initial display of 3 sprints
+        return acc
+      },
+      {} as Record<string, number>,
+    ),
+  )
 
   const toggleProject = (projectId: string) => {
     setExpandedProjects((prev) => ({
@@ -140,6 +151,13 @@ export function Sidebar() {
 
   const toggleProjectsSection = () => {
     setProjectsExpanded(!projectsExpanded)
+  }
+
+  const loadMoreSprints = (projectId: string) => {
+    setSprintDisplayCounts((prev) => ({
+      ...prev,
+      [projectId]: (prev[projectId] || 3) + 3, // Load 3 more sprints each time
+    }))
   }
 
   const ExpandIcon = ({ isExpanded }: { isExpanded: boolean }) => (
@@ -323,6 +341,24 @@ export function Sidebar() {
                           </div>
                         </Link>
                       ))}
+
+                      {sprintDisplayCounts[project.id] <
+                        project.sprints.length && (
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault()
+                            e.stopPropagation()
+                            loadMoreSprints(project.id)
+                          }}
+                          className={cn(
+                            'w-full text-center py-1 text-xs text-gray-500',
+                            'hover:bg-gray-100 rounded-md',
+                            'transition-colors duration-200',
+                          )}
+                        >
+                          Load More Sprints
+                        </button>
+                      )}
                     </div>
                   )}
                 </div>

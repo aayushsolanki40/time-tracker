@@ -99,7 +99,10 @@ const projects = [
 
 export default function TimeTrackingPage() {
   const [timeEntries, setTimeEntries] = useState(initialTimeEntries)
-  const [dateRange, setDateRange] = useState({
+  const [dateRange, setDateRange] = useState<{
+    from: Date | undefined
+    to: Date | undefined
+  }>({
     from: new Date(),
     to: undefined,
   })
@@ -112,8 +115,9 @@ export default function TimeTrackingPage() {
     const projectMatch =
       selectedProject === 'All Projects' || entry.project === selectedProject
     return (
+      dateRange.from &&
       entryDate >= dateRange.from &&
-      (!dateRange.to || entryDate <= dateRange.to) &&
+      (!dateRange.to || entryDate <= (dateRange.to ?? new Date())) &&
       projectMatch
     )
   })
@@ -239,7 +243,10 @@ export default function TimeTrackingPage() {
               defaultMonth={dateRange.from}
               selected={dateRange}
               onSelect={(range) =>
-                setDateRange(range || { from: new Date(), to: undefined })
+                setDateRange({
+                  from: range?.from ?? new Date(),
+                  to: range?.to ?? undefined,
+                })
               }
               numberOfMonths={2}
             />

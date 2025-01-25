@@ -6,6 +6,7 @@ import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
 import { Activity, CheckCircle, Clock, Users } from 'lucide-react'
 import { Bar, BarChart, XAxis, YAxis } from 'recharts'
 import { type ChartConfig } from '@/components/ui/chart'
+import ReAreaChart from '@/components/recharts/area-chart'
 
 export default function Dashboard() {
   const recentActivities = [
@@ -99,11 +100,16 @@ export default function Dashboard() {
             <CardTitle className="text-sm font-medium">Total Tasks</CardTitle>
             <CheckCircle className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">245</div>
-            <p className="text-xs text-muted-foreground">
-              +20% from last month
-            </p>
+          <CardContent className="flex flex-row items-center justify-between">
+            <div>
+              <div className="text-2xl font-bold">245</div>
+              <p className="text-xs text-muted-foreground">
+                +20% from last month
+              </p>
+            </div>
+            <div className="w-28 h-16">
+              <ReAreaChart />
+            </div>
           </CardContent>
         </Card>
         <Card>
@@ -111,9 +117,16 @@ export default function Dashboard() {
             <CardTitle className="text-sm font-medium">Hours Tracked</CardTitle>
             <Clock className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">164</div>
-            <p className="text-xs text-muted-foreground">+12% from last week</p>
+          <CardContent className="flex flex-row items-center justify-between">
+            <div>
+              <div className="text-2xl font-bold">164</div>
+              <p className="text-xs text-muted-foreground">
+                +12% from last week
+              </p>
+            </div>
+            <div className="w-28 h-16">
+              <ReAreaChart />
+            </div>
           </CardContent>
         </Card>
         <Card>
@@ -123,9 +136,14 @@ export default function Dashboard() {
             </CardTitle>
             <Activity className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">12</div>
-            <p className="text-xs text-muted-foreground">+2 new this month</p>
+          <CardContent className="flex flex-row items-center justify-between">
+            <div>
+              <div className="text-2xl font-bold">12</div>
+              <p className="text-xs text-muted-foreground">+2 new this month</p>
+            </div>
+            <div className="w-28 h-16">
+              <ReAreaChart />
+            </div>
           </CardContent>
         </Card>
         <Card>
@@ -133,9 +151,14 @@ export default function Dashboard() {
             <CardTitle className="text-sm font-medium">Team Members</CardTitle>
             <Users className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">24</div>
-            <p className="text-xs text-muted-foreground">+4 new this week</p>
+          <CardContent className="flex flex-row items-center justify-between">
+            <div>
+              <div className="text-2xl font-bold">24</div>
+              <p className="text-xs text-muted-foreground">+4 new this week</p>
+            </div>
+            <div className="w-28 h-16">
+              <ReAreaChart />
+            </div>
           </CardContent>
         </Card>
       </div>
