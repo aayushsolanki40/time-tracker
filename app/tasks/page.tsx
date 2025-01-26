@@ -1,5 +1,5 @@
 'use client'
-import TaskArea from '@/components/tasks/TaskArea'
+// import TaskArea from '@/components/tasks/TaskArea'
 
 export default function TasksPage() {
   return (
@@ -10,7 +10,7 @@ export default function TasksPage() {
           Organize and manage your tasks efficiently
         </p>
       </div>
-      <TaskArea className="min-h-[600px]" />
+      {/* <TaskArea className="min-h-[600px]" /> */}
     </div>
   )
 }

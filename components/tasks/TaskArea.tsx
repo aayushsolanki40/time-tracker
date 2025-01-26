@@ -20,18 +20,20 @@ import {
 } from '@dnd-kit/sortable'
 import { RootState } from '@/store'
 import { moveTask, updateTaskTypes } from '@/store/features/taskSlice'
-import { Task } from '@/types/todo'
+import { Task, TaskTypes } from '@/types/todo'
 import { cn } from '@/lib/utils'
 import TaskContainer from './TaskContainer'
 import TodoCard from './TodoCard'
 
 interface TaskAreaProps {
   className?: string
+  taskTypes: TaskTypes
+  filteredTasks: { [key: string]: Task[] }
 }
 
-function TaskArea({ className }: TaskAreaProps) {
+function TaskArea({ className, taskTypes, filteredTasks }: TaskAreaProps) {
   const dispatch = useDispatch()
-  const taskTypes = useSelector((state: RootState) => state.tasks.taskTypes)
+  // const taskTypes = useSelector((state: RootState) => state.tasks.taskTypes)
   const [activeTask, setActiveTask] = useState<Task | null>(null)
   const [overId, setOverId] = useState<string | null>(null)
 
